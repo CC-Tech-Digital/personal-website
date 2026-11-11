@@ -1,31 +1,29 @@
 {% if include.heading %}
 <header class="hero">
-  <img src="{{ user.avatar_url }}" alt="Photo of {{ site_name | escape }}" class="avatar" width="112" height="112">
-  <div class="hero-body">
-    <h1 class="hero-name">{{ site_name }}</h1>
-    {% if site.role.title %}
-      <p class="hero-role">{{ site.role.title }}{% if site.role.company %} at {% if site.role.company_url %}<a href="{{ site.role.company_url }}" rel="noopener noreferrer">{{ site.role.company }}</a>{% else %}{{ site.role.company }}{% endif %}{% endif %}</p>
-    {% elsif site.tagline %}
-      <p class="hero-role">{{ site.tagline }}</p>
-    {% endif %}
-    {% if site_description %}<p class="hero-bio">{{ site_description }}</p>{% endif %}
-    <ul class="chips">
-      {% if site.status %}<li class="chip chip-status"><span class="pulse" aria-hidden="true"></span>{{ site.status }}</li>{% endif %}
-      {% if user.location %}<li class="chip">{{ user.location }}</li>{% endif %}
-    </ul>
-    <ul class="profile-links">
-      <li><a href="https://github.com/{{ user.login }}" rel="me noopener noreferrer">GitHub</a></li>
-      {% for account in site.social_media %}
-        {% assign service_key = account[0] %}{% assign service = site.data.social_media[service_key] %}
-        <li><a href="{{ service.profile_url_prefix }}{{ account[1] }}" rel="me noopener noreferrer">{{ service.name }}</a></li>
-      {% endfor %}
-    </ul>
-  </div>
+  <img src="{{ user.avatar_url }}" alt="Photo of {{ site_name | escape }}" class="avatar" width="88" height="88">
+  {% if site.role.title %}
+    <p class="hero-role">{{ site.role.title }}{% if site.role.company %} · {% if site.role.company_url %}<a href="{{ site.role.company_url }}" rel="noopener noreferrer">{{ site.role.company }}</a>{% else %}{{ site.role.company }}{% endif %}{% endif %}</p>
+  {% endif %}
+  <h1 class="hero-name">{{ site_name }}</h1>
+  {% if site.intro %}<p class="hero-intro">{{ site.intro }}</p>{% endif %}
+  {% if site.status or user.location %}
+    <p class="hero-meta">
+      {% if site.status %}<span class="status"><span class="dot" aria-hidden="true"></span>{{ site.status }}</span>{% endif %}
+      {% if user.location %}<span>{{ user.location }}</span>{% endif %}
+    </p>
+  {% endif %}
+  <ul class="actions">
+    {% for account in site.social_media %}
+      {% assign service_key = account[0] %}{% assign service = site.data.social_media[service_key] %}
+      <li><a class="btn{% if forloop.first %} btn-primary{% endif %}" href="{{ service.profile_url_prefix }}{{ account[1] }}" rel="me noopener noreferrer">{{ service.name }}</a></li>
+    {% endfor %}
+    <li><a class="btn{% unless site.social_media %} btn-primary{% endunless %}" href="https://github.com/{{ user.login }}" rel="me noopener noreferrer">GitHub</a></li>
+  </ul>
 </header>
 {% else %}
 <header class="topbar">
   <a href="{{ '/' | relative_url }}" class="topbar-brand">
-    <img src="{{ user.avatar_url }}" alt="" class="avatar" width="36" height="36">
+    <img src="{{ user.avatar_url }}" alt="" class="avatar" width="32" height="32">
     <span>{{ site_name }}</span>
   </a>
   {% if site.role.title %}<span class="topbar-role">{{ site.role.title }}</span>{% endif %}

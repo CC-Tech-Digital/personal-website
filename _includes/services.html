@@ -1,0 +1,12 @@
+<section aria-labelledby="services">
+  <h2 id="services">What I do</h2>
+  <ul class="services">
+    {% for service in site.services %}
+      <li>
+        <span class="services-num">{{ forloop.index | prepend: '0' }}</span>
+        <h3>{{ service.name }}</h3>
+        <p>{{ service.text }}</p>
+      </li>
+    {% endfor %}
+  </ul>
+</section>

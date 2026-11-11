@@ -6,11 +6,11 @@
     {% if about != '' %}
       <section aria-labelledby="about">
         <h2 id="about">About</h2>
-        <div class="prose">{{ content }}</div>
+        <div class="prose lead-prose">{{ content }}</div>
       </section>
     {% endif %}
+    {% if site.services %}{% include services.html %}{% endif %}
     {% include projects.html %}
-    {% if site.topics %}{% include interests.html %}{% endif %}
     {% assign posts_total = site.posts | size %}
     {% if posts_total > 0 %}{% include thoughts.html %}{% endif %}
   </main>

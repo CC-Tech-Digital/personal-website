@@ -2,7 +2,7 @@
 # Anything left blank falls back to the GitHub profile of the repo owner.
 title: Nati Abebe
 tagline: Managing Partner & Cloud Architect
-description: "Nati Abebe is Managing Partner and Cloud Architect at CC Tech Digital, designing secure, scalable cloud platforms."
+description: "Nati Abebe is Managing Partner and Cloud Architect at CC Tech Digital, helping organizations design, secure and run cloud platforms."
 job_title: Managing Partner & Cloud Architect
 image:          # Social share image path, e.g. /assets/og-image.png (1200x630). Defaults to GitHub avatar.
 
@@ -11,6 +11,7 @@ role:
   title: Managing Partner & Cloud Architect
   company: CC Tech Digital
   company_url: https://cctechdigital.com
+intro: "I help organizations design, secure and run cloud platforms that scale."
 status:         # e.g. "Open to new projects" - leave blank to hide the badge
 
 # --- Security ------------------------------------------------------------
@@ -67,15 +68,14 @@ projects:
   # website: http://your_website_url
   # youtube: your_username
 
-topics:
+# --- What I do (home page) ------------------------------------------------
+services:
   - name: Cloud architecture
-    web_url: https://github.com/topics/cloud
-  - name: Cloud security
-    web_url: https://github.com/topics/cloud-security
-  - name: Infrastructure as code
-    web_url: https://github.com/topics/infrastructure-as-code
-  - name: DevSecOps
-    web_url: https://github.com/topics/devsecops
+    text: Landing zones, reference architectures and migration plans built for scale and resilience.
+  - name: Security & compliance
+    text: Identity, network and data controls designed in from day one and mapped to the frameworks you report against.
+  - name: Modernization & delivery
+    text: Infrastructure as code, CI/CD and DevSecOps practices that let teams ship safely and often.
 
 exclude:
   - README.md

@@ -1,8 +1,0 @@
-<section aria-labelledby="interests">
-  <h2 id="interests">Interests</h2>
-  <ul class="tags">
-    {% for topic in site.topics %}
-      <li>{% if topic.web_url %}<a href="{{ topic.web_url }}" rel="noopener noreferrer">{{ topic.name }}</a>{% else %}{{ topic.name }}{% endif %}</li>
-    {% endfor %}
-  </ul>
-</section>

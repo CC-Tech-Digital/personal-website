@@ -14,6 +14,7 @@ It's all possible using the combination of [Jekyll](https://jekyllrb.com/docs/) 
 
 Set these in `_config.yml` (blank values fall back to the GitHub profile of the repo owner):
 
+- `intro`, `role`, `services` and `index.html` – the home page copy.
 - `title`, `tagline`, `description`, `job_title` – drive the page `<title>`, meta description and schema.org `Person` data.
 - `url` – set if you use a custom domain so canonical URLs and the sitemap are correct.
 - `image` – a 1200×630 share image for LinkedIn/X previews.
