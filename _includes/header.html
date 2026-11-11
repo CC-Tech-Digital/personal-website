@@ -1,33 +1,99 @@
-{% if site.style == 'dark' %}
-  {% assign icon_color = "#ffffff" %}
-{% else %}
-  {% assign icon_color = "#24292e" %}
-{% endif %}
-
-{% assign content = page.content %}
-
-{% assign posts_total = site.posts | size %}
-
 {% assign user = site.github.owner %}
+{% assign site_name = site.title | default: user.name | default: user.login %}
+{% assign site_description = site.description | default: user.bio | default: site.github.project_tagline %}
+{% assign is_post = false %}
+{% if page.collection == 'posts' %}{% assign is_post = true %}{% endif %}
+{% assign is_home = false %}
+{% if page.layout == 'home' %}{% assign is_home = true %}{% endif %}
 
-{% if page.path contains '_posts' %}
-  {% assign page_title = page.title %}
-  {% assign meta_description = page.content | strip_html | strip_newlines | xml_escape | truncate: 300 %}
+{% if is_home %}
+  {% if site.tagline %}
+    {% capture seo_title %}{{ site_name }} | {{ site.tagline }}{% endcapture %}
+  {% else %}
+    {% assign seo_title = site_name %}
+  {% endif %}
+  {% assign seo_description = site_description %}
 {% else %}
-  {% assign page_title = user.name %}
-  {% assign meta_description = user.bio | strip_html | strip_newlines | xml_escape | truncate: 300 %}
+  {% capture seo_title %}{{ page.title }} | {{ site_name }}{% endcapture %}
+  {% assign seo_description = page.description | default: page.excerpt | default: site_description %}
 {% endif %}
+{% assign seo_title = seo_title | strip | escape %}
+{% assign seo_description = seo_description | strip_html | normalize_whitespace | truncate: 160 | escape %}
+{% assign seo_image = page.image | default: site.image %}
+{% if seo_image %}{% assign seo_image = seo_image | absolute_url %}{% else %}{% assign seo_image = user.avatar_url %}{% endif %}
+{% assign canonical = page.url | replace: 'index.html', '' | absolute_url %}
+
+{% assign same_as = '' | split: ',' %}
+{% if user.html_url %}{% assign same_as = same_as | push: user.html_url %}{% endif %}
+{% for account in site.social_media %}
+  {% assign service_key = account[0] %}{% assign service = site.data.social_media[service_key] %}
+  {% capture profile_url %}{{ service.profile_url_prefix }}{{ account[1] }}{% endcapture %}
+  {% assign same_as = same_as | push: profile_url %}
+{% endfor %}
 
 <!doctype html>
-<html class="min-height-full">
+<html lang="{{ site.lang | default: 'en' }}">
   <head>
     <meta charset="utf-8">
-    <title>{{ page_title }}</title>
-    <meta name="description" content="{{ meta_description }}" />
-    <meta property="og:title" content="{{ user.name }}" />
-    <meta property="og:image" content="{{ user.avatar_url }}" />
-    <meta property="og:description" content="{{ meta_description }}" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link href="{{ "/assets/styles.css" | relative_url }}" rel="stylesheet" type="text/css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ seo_title }}</title>
+    <meta name="description" content="{{ seo_description }}">
+    <link rel="canonical" href="{{ canonical }}">
+    {% if page.noindex %}<meta name="robots" content="noindex">{% endif %}
+    <meta name="author" content="{{ site_name | escape }}">
+    <meta name="color-scheme" content="light dark">
+
+    <meta property="og:site_name" content="{{ site_name | escape }}">
+    <meta property="og:title" content="{{ seo_title }}">
+    <meta property="og:description" content="{{ seo_description }}">
+    <meta property="og:url" content="{{ canonical }}">
+    <meta property="og:image" content="{{ seo_image }}">
+    <meta property="og:locale" content="{{ site.lang | default: 'en' | replace: '-', '_' }}">
+    {% if is_post %}
+    <meta property="og:type" content="article">
+    <meta property="article:published_time" content="{{ page.date | date_to_xmlschema }}">
+    {% if page.last_modified_at %}<meta property="article:modified_time" content="{{ page.last_modified_at | date_to_xmlschema }}">{% endif %}
+    {% else %}
+    <meta property="og:type" content="{% if is_home %}profile{% else %}website{% endif %}">
+    {% endif %}
+    <meta name="twitter:card" content="{% if page.image or site.image %}summary_large_image{% else %}summary{% endif %}">
+    {% if site.social_media.twitter %}<meta name="twitter:site" content="@{{ site.social_media.twitter }}">{% endif %}
+
+    <script type="application/ld+json">
+    {% if is_post %}
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": {{ page.title | jsonify }},
+      "description": {{ seo_description | jsonify }},
+      "datePublished": {{ page.date | date_to_xmlschema | jsonify }},
+      "dateModified": {{ page.last_modified_at | default: page.date | date_to_xmlschema | jsonify }},
+      "mainEntityOfPage": {{ canonical | jsonify }},
+      "image": {{ seo_image | jsonify }},
+      "author": { "@type": "Person", "name": {{ site_name | jsonify }}, "url": {{ '/' | absolute_url | jsonify }} }
+    }
+    {% else %}
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfilePage",
+      "url": {{ canonical | jsonify }},
+      "mainEntity": {
+        "@type": "Person",
+        "name": {{ site_name | jsonify }},
+        "url": {{ '/' | absolute_url | jsonify }},
+        "image": {{ user.avatar_url | jsonify }},
+        {% if site.job_title %}"jobTitle": {{ site.job_title | jsonify }},{% endif %}
+        {% if user.location %}"homeLocation": { "@type": "Place", "name": {{ user.location | jsonify }} },{% endif %}
+        "description": {{ site_description | strip_html | normalize_whitespace | jsonify }},
+        "sameAs": {{ same_as | jsonify }}
+      }
+    }
+    {% endif %}
+    </script>
+
+    {% feed_meta %}
+    <link rel="icon" href="{{ '/favicon.ico' | relative_url }}">
+    <link rel="stylesheet" href="{{ '/assets/styles.css' | relative_url }}">
   </head>
-  <body class="bg-white min-height-full" {% if site.style == 'dark' %}style="background-color: #2f363d !important"{% endif %}>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>

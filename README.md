@@ -10,6 +10,17 @@ It's all possible using the combination of [Jekyll](https://jekyllrb.com/docs/) 
 
 ![](https://user-images.githubusercontent.com/221550/110506678-51906280-80cd-11eb-803a-c41984bd9312.png)
 
+## SEO quick start
+
+Set these in `_config.yml` (blank values fall back to the GitHub profile of the repo owner):
+
+- `title`, `tagline`, `description`, `job_title` – drive the page `<title>`, meta description and schema.org `Person` data.
+- `url` – set if you use a custom domain so canonical URLs and the sitemap are correct.
+- `image` – a 1200×630 share image for LinkedIn/X previews.
+- `social_media` – profiles are linked with `rel="me"` and added to structured data (`sameAs`).
+
+Generated automatically: `sitemap.xml`, `robots.txt`, `feed.xml`, canonical links, Open Graph/Twitter tags, and JSON-LD (`ProfilePage` on the home page, `BlogPosting` on posts). Add `description:` to a post's front matter to control its search snippet.
+
 ## Installation
 
 ### Fork the `github/personal-website` repo

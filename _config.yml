@@ -1,9 +1,19 @@
-layout: sidebar
-style: light
+# --- Site identity & SEO -------------------------------------------------
+# Anything left blank falls back to your GitHub profile (name, bio, avatar).
+# Filling these in gives search engines a stronger, more specific signal.
+title:          # e.g. "Jane Doe" - used in <title> and as the brand name
+tagline:        # e.g. "Cloud Architect & Software Engineer" - appended to the home page title
+description:    # 1-2 sentences, ~150 characters. Shown in Google results.
+job_title:      # e.g. "Cloud Architect" - added to structured data (schema.org Person)
+image:          # Social share image path, e.g. /assets/og-image.png (1200x630). Defaults to GitHub avatar.
+lang: en
+# url: https://example.com   # Set this if you use a custom domain.
 
 plugins:
-  - jekyll-octicons
   - jekyll-github-metadata
+  - jekyll-octicons
+  - jekyll-sitemap
+  - jekyll-feed
   - jemoji
 
 permalink: /:year/:month/:day/:title/
@@ -56,3 +66,10 @@ topics:
   - name: Sass
     web_url: https://github.com/topics/sass
     image_url: https://raw.githubusercontent.com/github/explore/6c6508f34230f0ac0d49e847a326429eefbfc030/topics/sass/sass.png
+
+exclude:
+  - README.md
+  - LICENSE.txt
+  - Gemfile
+  - Gemfile.lock
+  - vendor
