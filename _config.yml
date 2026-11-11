@@ -1,9 +1,30 @@
-layout: sidebar
-style: light
+# --- Site identity & SEO -------------------------------------------------
+# Anything left blank falls back to the GitHub profile of the repo owner.
+title: Nati Abebe
+tagline: Managing Partner & Cloud Architect
+description: "Nati Abebe is Managing Partner and Cloud Architect at CC Tech Digital, helping organizations design, secure and run cloud platforms."
+job_title: Managing Partner & Cloud Architect
+image:          # Social share image path, e.g. /assets/og-image.png (1200x630). Defaults to GitHub avatar.
+
+# --- Current role & status -----------------------------------------------
+role:
+  title: Managing Partner & Cloud Architect
+  company: CC Tech Digital
+  company_url: https://cctechdigital.com
+intro: "I help organizations design, secure and run cloud platforms that scale."
+status:         # e.g. "Open to new projects" - leave blank to hide the badge
+
+# --- Security ------------------------------------------------------------
+# Publishes /.well-known/security.txt (RFC 9116) when set, e.g. mailto:security@example.com
+security_contact:
+
+lang: en
+# url: https://example.com   # Set this if you use a custom domain.
 
 plugins:
-  - jekyll-octicons
   - jekyll-github-metadata
+  - jekyll-sitemap
+  - jekyll-feed
   - jemoji
 
 permalink: /:year/:month/:day/:title/
@@ -46,13 +67,21 @@ projects:
   # website: http://your_website_url
   # youtube: your_username
 
-topics:
-  - name: CSS
-    web_url: https://github.com/topics/css
-    image_url: https://raw.githubusercontent.com/github/explore/6c6508f34230f0ac0d49e847a326429eefbfc030/topics/css/css.png
+# --- What I do (home page) ------------------------------------------------
+services:
+  - name: Cloud architecture
+    text: Landing zones, reference architectures and migration plans built for scale and resilience.
+  - name: Security & compliance
+    text: Identity, network and data controls designed in from day one and mapped to the frameworks you report against.
+  - name: Modernization & delivery
+    text: Infrastructure as code, CI/CD and DevSecOps practices that let teams ship safely and often.
 
-  - name: Web design
+exclude:
+  - README.md
+  - LICENSE.txt
+  - Gemfile
+  - Gemfile.lock
+  - vendor
 
-  - name: Sass
-    web_url: https://github.com/topics/sass
-    image_url: https://raw.githubusercontent.com/github/explore/6c6508f34230f0ac0d49e847a326429eefbfc030/topics/sass/sass.png
+include:
+  - .well-known
