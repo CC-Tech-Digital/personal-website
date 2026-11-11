@@ -21,6 +21,13 @@ Set these in `_config.yml` (blank values fall back to the GitHub profile of the 
 
 Generated automatically: `sitemap.xml`, `robots.txt`, `feed.xml`, canonical links, Open Graph/Twitter tags, and JSON-LD (`ProfilePage` on the home page, `BlogPosting` on posts). Add `description:` to a post's front matter to control its search snippet.
 
+## Security
+
+- Strict Content-Security-Policy (no scripts, no third-party CSS/fonts), referrer policy, and `rel="noopener noreferrer"` on external links.
+- `/.well-known/security.txt` (RFC 9116). Set `security_contact` in `_config.yml`, or enable *Private vulnerability reporting* in the repo settings (the default contact points there).
+- Dependabot keeps Ruby gems and Actions up to date.
+- In **Settings → Pages**, turn on **Enforce HTTPS**.
+
 ## Installation
 
 ### Fork the `github/personal-website` repo

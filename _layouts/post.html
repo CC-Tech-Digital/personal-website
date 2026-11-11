@@ -18,7 +18,7 @@
     {% if shareable.size > 0 %}
       <p class="share">Share:
         {% for service in shareable %}
-          <a href="{{ service.share_url_prefix }}{{ page.url | absolute_url | url_encode }}" rel="noopener">{{ service.name }}</a>{% unless forloop.last %} &middot; {% endunless %}
+          <a href="{{ service.share_url_prefix }}{{ page.url | absolute_url | url_encode }}" rel="noopener noreferrer">{{ service.name }}</a>{% unless forloop.last %} &middot; {% endunless %}
         {% endfor %}
       </p>
     {% endif %}

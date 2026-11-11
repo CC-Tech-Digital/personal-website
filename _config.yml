@@ -1,11 +1,22 @@
 # --- Site identity & SEO -------------------------------------------------
-# Anything left blank falls back to your GitHub profile (name, bio, avatar).
-# Filling these in gives search engines a stronger, more specific signal.
-title:          # e.g. "Jane Doe" - used in <title> and as the brand name
-tagline:        # e.g. "Cloud Architect & Software Engineer" - appended to the home page title
-description:    # 1-2 sentences, ~150 characters. Shown in Google results.
-job_title:      # e.g. "Cloud Architect" - added to structured data (schema.org Person)
+# Anything left blank falls back to the GitHub profile of the repo owner.
+title: Nati Abebe
+tagline: Managing Partner & Cloud Architect
+description: "Nati Abebe is Managing Partner and Cloud Architect at CC Tech Digital, designing secure, scalable cloud platforms."
+job_title: Managing Partner & Cloud Architect
 image:          # Social share image path, e.g. /assets/og-image.png (1200x630). Defaults to GitHub avatar.
+
+# --- Current role & status -----------------------------------------------
+role:
+  title: Managing Partner & Cloud Architect
+  company: CC Tech Digital
+  company_url: https://cctechdigital.com
+status:         # e.g. "Open to new projects" - leave blank to hide the badge
+
+# --- Security ------------------------------------------------------------
+# Publishes /.well-known/security.txt (RFC 9116) when set, e.g. mailto:security@example.com
+security_contact:
+
 lang: en
 # url: https://example.com   # Set this if you use a custom domain.
 
@@ -57,15 +68,14 @@ projects:
   # youtube: your_username
 
 topics:
-  - name: CSS
-    web_url: https://github.com/topics/css
-    image_url: https://raw.githubusercontent.com/github/explore/6c6508f34230f0ac0d49e847a326429eefbfc030/topics/css/css.png
-
-  - name: Web design
-
-  - name: Sass
-    web_url: https://github.com/topics/sass
-    image_url: https://raw.githubusercontent.com/github/explore/6c6508f34230f0ac0d49e847a326429eefbfc030/topics/sass/sass.png
+  - name: Cloud architecture
+    web_url: https://github.com/topics/cloud
+  - name: Cloud security
+    web_url: https://github.com/topics/cloud-security
+  - name: Infrastructure as code
+    web_url: https://github.com/topics/infrastructure-as-code
+  - name: DevSecOps
+    web_url: https://github.com/topics/devsecops
 
 exclude:
   - README.md
@@ -73,3 +83,6 @@ exclude:
   - Gemfile
   - Gemfile.lock
   - vendor
+
+include:
+  - .well-known

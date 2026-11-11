@@ -1,5 +1,5 @@
 <li class="card">
-  <h3><a href="{{ repository.html_url }}">{{ repository.name }}</a></h3>
+  <h3><a href="{{ repository.html_url }}" rel="noopener noreferrer">{{ repository.name }}</a></h3>
   {% if repository.description %}<p>{{ repository.description }}</p>{% endif %}
   <p class="meta">
     {% if repository.language %}<span><span class="lang-dot" style="background-color:{{ site.data.colors[repository.language]['color'] }}"></span>{{ repository.language }}</span>{% endif %}
