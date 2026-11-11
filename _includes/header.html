@@ -42,7 +42,8 @@
     {% if page.noindex %}<meta name="robots" content="noindex">{% endif %}
     <meta name="author" content="{{ site_name | escape }}">
     <meta name="color-scheme" content="light dark">
-    <meta name="theme-color" content="#0b5cad">
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#09090b" media="(prefers-color-scheme: dark)">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https://avatars.githubusercontent.com https://raw.githubusercontent.com; style-src 'self' 'unsafe-inline'; script-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests">
     <meta name="referrer" content="strict-origin-when-cross-origin">
 

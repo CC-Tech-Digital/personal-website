@@ -23,7 +23,6 @@ lang: en
 
 plugins:
   - jekyll-github-metadata
-  - jekyll-octicons
   - jekyll-sitemap
   - jekyll-feed
   - jemoji
